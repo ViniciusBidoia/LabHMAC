@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LabHMAC.Api/LabHMAC.Api.csproj" />
+    <Project Path="src/LabHMAC.Simulator/LabHMAC.Simulator.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/LabHMAC.Tests/LabHMAC.Tests.csproj" />
+  </Folder>
+</Solution>

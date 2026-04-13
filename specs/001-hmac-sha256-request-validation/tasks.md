@@ -19,10 +19,10 @@
 
 **Purpose**: Create the .NET 10 solution structure with three projects per plan.md
 
-- [ ] T001 Create LabHMAC.sln solution file and directory structure (src/, tests/) at repository root
-- [ ] T002 Create LabHMAC.Api web API project (net10.0) in src/LabHMAC.Api/LabHMAC.Api.csproj with Domain/, Application/, and Api/ folders
-- [ ] T003 [P] Create LabHMAC.Simulator console project (net10.0) in src/LabHMAC.Simulator/LabHMAC.Simulator.csproj
-- [ ] T004 [P] Create LabHMAC.Tests xUnit project (net10.0) in tests/LabHMAC.Tests/LabHMAC.Tests.csproj with project reference to LabHMAC.Api and Microsoft.AspNetCore.Mvc.Testing package
+- [X] T001 Create LabHMAC.sln solution file and directory structure (src/, tests/) at repository root
+- [X] T002 Create LabHMAC.Api web API project (net10.0) in src/LabHMAC.Api/LabHMAC.Api.csproj with Domain/, Application/, and Api/ folders
+- [X] T003 [P] Create LabHMAC.Simulator console project (net10.0) in src/LabHMAC.Simulator/LabHMAC.Simulator.csproj
+- [X] T004 [P] Create LabHMAC.Tests xUnit project (net10.0) in tests/LabHMAC.Tests/LabHMAC.Tests.csproj with project reference to LabHMAC.Api and Microsoft.AspNetCore.Mvc.Testing package
 
 ---
 
@@ -32,12 +32,12 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 [P] Create PaymentRequest entity with TransactionId, Amount, MerchantId, Timestamp fields and IsValid() method in src/LabHMAC.Api/Domain/PaymentRequest.cs
-- [ ] T006 [P] Create HmacValidationResult value object with IsValid, Message, ReceivedSignature, ComputedSignature properties and static factory methods (Valid, Invalid, MissingHeader) in src/LabHMAC.Api/Domain/HmacValidationResult.cs
-- [ ] T007 [P] Create IHmacService interface with ComputeSignature(string) and Validate(string, string?) methods in src/LabHMAC.Api/Domain/IHmacService.cs
-- [ ] T008 Implement HmacService using HMACSHA256.HashData, Convert.ToHexString, and CryptographicOperations.FixedTimeEquals with Debug logging per FR-006 in src/LabHMAC.Api/Application/HmacService.cs
-- [ ] T009 [P] Configure HMAC:SecretKey section with placeholder value in src/LabHMAC.Api/appsettings.json
-- [ ] T010 Configure Program.cs with HmacService DI registration, request buffering middleware (EnableBuffering), and JSON serialization in src/LabHMAC.Api/Program.cs
+- [X] T005 [P] Create PaymentRequest entity with TransactionId, Amount, MerchantId, Timestamp fields and IsValid() method in src/LabHMAC.Api/Domain/PaymentRequest.cs
+- [X] T006 [P] Create HmacValidationResult value object with IsValid, Message, ReceivedSignature, ComputedSignature properties and static factory methods (Valid, Invalid, MissingHeader) in src/LabHMAC.Api/Domain/HmacValidationResult.cs
+- [X] T007 [P] Create IHmacService interface with ComputeSignature(string) and Validate(string, string?) methods in src/LabHMAC.Api/Domain/IHmacService.cs
+- [X] T008 Implement HmacService using HMACSHA256.HashData, Convert.ToHexString, and CryptographicOperations.FixedTimeEquals with Debug logging per FR-006 in src/LabHMAC.Api/Application/HmacService.cs
+- [X] T009 [P] Configure HMAC:SecretKey section with placeholder value in src/LabHMAC.Api/appsettings.json
+- [X] T010 Configure Program.cs with HmacService DI registration, request buffering middleware (EnableBuffering), and JSON serialization in src/LabHMAC.Api/Program.cs
 
 **Checkpoint**: Foundation ready — domain objects compiled, HmacService registered, API pipeline configured
 
@@ -53,14 +53,14 @@
 
 > **Write these tests FIRST, ensure they FAIL before implementation of T013–T014**
 
-- [ ] T011 [P] [US1] Write unit tests for HmacService: ComputeSignature returns correct hex, Validate with matching signature returns Valid result in tests/LabHMAC.Tests/Unit/HmacServiceTests.cs
-- [ ] T012 [P] [US1] Write unit tests for HmacValidationResult: Valid() sets IsValid=true, Invalid() sets IsValid=false, MissingHeader() returns correct message in tests/LabHMAC.Tests/Unit/HmacValidationResultTests.cs
+- [X] T011 [P] [US1] Write unit tests for HmacService: ComputeSignature returns correct hex, Validate with matching signature returns Valid result in tests/LabHMAC.Tests/Unit/HmacServiceTests.cs
+- [X] T012 [P] [US1] Write unit tests for HmacValidationResult: Valid() sets IsValid=true, Invalid() sets IsValid=false, MissingHeader() returns correct message in tests/LabHMAC.Tests/Unit/HmacValidationResultTests.cs
 
 ### Implementation for User Story 1
 
-- [ ] T013 [US1] Create HmacValidationFilter (IEndpointFilter or IActionFilter) that reads raw body via EnableBuffering, extracts X-Hmac-Signature header, and delegates to IHmacService.Validate in src/LabHMAC.Api/Api/HmacValidationFilter.cs
-- [ ] T014 [US1] Create PaymentsController with POST /api/payments/validate endpoint, apply HmacValidationFilter, deserialize PaymentRequest, and return appropriate status codes (200/400/401) in src/LabHMAC.Api/Api/PaymentsController.cs
-- [ ] T015 [US1] Write integration test using WebApplicationFactory for valid signed request → 200 OK with expected JSON body in tests/LabHMAC.Tests/Integration/PaymentsEndpointTests.cs
+- [X] T013 [US1] Create HmacValidationFilter (IEndpointFilter or IActionFilter) that reads raw body via EnableBuffering, extracts X-Hmac-Signature header, and delegates to IHmacService.Validate in src/LabHMAC.Api/Api/HmacValidationFilter.cs
+- [X] T014 [US1] Create PaymentsController with POST /api/payments/validate endpoint, apply HmacValidationFilter, deserialize PaymentRequest, and return appropriate status codes (200/400/401) in src/LabHMAC.Api/Api/PaymentsController.cs
+- [X] T015 [US1] Write integration test using WebApplicationFactory for valid signed request → 200 OK with expected JSON body in tests/LabHMAC.Tests/Integration/PaymentsEndpointTests.cs
 
 **Checkpoint**: User Story 1 fully functional — valid HMAC requests return 200 OK, all US1 tests pass
 
@@ -74,8 +74,8 @@
 
 ### Tests for User Story 2
 
-- [ ] T016 [US2] Add unit test for HmacService.Validate with tampered body (signature computed from original body, validated against modified body) → returns Invalid result in tests/LabHMAC.Tests/Unit/HmacServiceTests.cs
-- [ ] T017 [US2] Add integration test using WebApplicationFactory for tampered request → 401 Unauthorized with expected JSON body in tests/LabHMAC.Tests/Integration/PaymentsEndpointTests.cs
+- [X] T016 [US2] Add unit test for HmacService.Validate with tampered body (signature computed from original body, validated against modified body) → returns Invalid result in tests/LabHMAC.Tests/Unit/HmacServiceTests.cs
+- [X] T017 [US2] Add integration test using WebApplicationFactory for tampered request → 401 Unauthorized with expected JSON body in tests/LabHMAC.Tests/Integration/PaymentsEndpointTests.cs
 
 **Checkpoint**: User Stories 1 AND 2 verified — valid → 200, tampered → 401
 
@@ -89,10 +89,10 @@
 
 ### Tests for User Story 3
 
-- [ ] T018 [P] [US3] Add unit test for HmacService.Validate with null/empty signature → returns MissingHeader result in tests/LabHMAC.Tests/Unit/HmacServiceTests.cs
-- [ ] T019 [P] [US3] Add unit test for HmacValidationFilter or HmacService handling malformed hex signature → returns Invalid result with format message in tests/LabHMAC.Tests/Unit/HmacServiceTests.cs
-- [ ] T020 [P] [US3] Add integration test for missing X-Hmac-Signature header → 400 Bad Request with `"X-Hmac-Signature header is missing."` in tests/LabHMAC.Tests/Integration/PaymentsEndpointTests.cs
-- [ ] T021 [P] [US3] Add integration test for malformed (non-hex) signature → 400 Bad Request with educational format message in tests/LabHMAC.Tests/Integration/PaymentsEndpointTests.cs
+- [X] T018 [P] [US3] Add unit test for HmacService.Validate with null/empty signature → returns MissingHeader result in tests/LabHMAC.Tests/Unit/HmacServiceTests.cs
+- [X] T019 [P] [US3] Add unit test for HmacValidationFilter or HmacService handling malformed hex signature → returns Invalid result with format message in tests/LabHMAC.Tests/Unit/HmacServiceTests.cs
+- [X] T020 [P] [US3] Add integration test for missing X-Hmac-Signature header → 400 Bad Request with `"X-Hmac-Signature header is missing."` in tests/LabHMAC.Tests/Integration/PaymentsEndpointTests.cs
+- [X] T021 [P] [US3] Add integration test for malformed (non-hex) signature → 400 Bad Request with educational format message in tests/LabHMAC.Tests/Integration/PaymentsEndpointTests.cs
 
 **Checkpoint**: All three user stories verified — valid → 200, tampered → 401, missing/malformed → 400
 
@@ -102,8 +102,8 @@
 
 **Purpose**: Terminal simulator and end-to-end validation
 
-- [ ] T022 Implement terminal simulator demonstrating all three scenarios (valid, tampered, missing header) with step-by-step console output showing HMAC computation in src/LabHMAC.Simulator/Program.cs
-- [ ] T023 Run quickstart.md end-to-end validation: dotnet build, dotnet test (all pass), run API + simulator, verify all three scenarios produce expected output
+- [X] T022 Implement terminal simulator demonstrating all three scenarios (valid, tampered, missing header) with step-by-step console output showing HMAC computation in src/LabHMAC.Simulator/Program.cs
+- [X] T023 Run quickstart.md end-to-end validation: dotnet build, dotnet test (all pass), run API + simulator, verify all three scenarios produce expected output
 
 ---
 
