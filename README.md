@@ -14,8 +14,8 @@ Segredo compartilhado
 | UTF-8 bytes |    |  UTF-8 bytes  |    |  HMAC-SHA256   |    |   Hex string   |
 | (secret key)|--->|  (body JSON)  |--->|   (32 bytes)   |--->|  (64 chars)    |
 +-------------+    +---------------+    +----------------+    +----------------+
-																																		 |
-																								Enviada no header X-Hmac-Signature
+			 |
+Enviada no header X-Hmac-Signature
 ```
 
 1. Codificar a chave secreta como bytes UTF-8.
