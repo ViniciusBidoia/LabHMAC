@@ -28,6 +28,12 @@ public sealed class HmacService : IHmacService
         // FR-004: Key is loaded from configuration, never hardcoded.
         _secretKey = configuration["HMAC:SecretKey"]
             ?? throw new InvalidOperationException("HMAC:SecretKey is not configured. Set it in appsettings.json or via the HMAC__SecretKey environment variable.");
+
+        if (string.IsNullOrWhiteSpace(_secretKey))
+        {
+            throw new InvalidOperationException("HMAC:SecretKey cannot be empty or whitespace. Set a strong shared secret in configuration.");
+        }
+
         _logger = logger;
     }
 
