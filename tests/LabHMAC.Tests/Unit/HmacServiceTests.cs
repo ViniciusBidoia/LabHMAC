@@ -25,6 +25,15 @@ public class HmacServiceTests
         return new HmacService(config, NullLogger<HmacService>.Instance);
     }
 
+    [Theory]
+    [InlineData("")]
+    [InlineData("   ")]
+    public void Constructor_EmptyOrWhitespaceSecretKey_ThrowsInvalidOperationException(string secretKey)
+    {
+        InvalidOperationException ex = Assert.Throws<InvalidOperationException>(() => CreateService(secretKey));
+        Assert.Contains("cannot be empty or whitespace", ex.Message);
+    }
+
     // ──────────────────────────────────────────────────
     // T011 [US1] — ComputeSignature returns correct hex
     // ──────────────────────────────────────────────────
