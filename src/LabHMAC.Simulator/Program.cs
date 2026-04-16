@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 using System.Text;
 
 // ────────────────────────────────────────────────────────────────
@@ -17,7 +17,7 @@ const string secretKey = "minha-chave-secreta-super-segura";
 using var httpClient = new HttpClient { BaseAddress = new Uri(baseUrl) };
 
 Console.WriteLine("╔══════════════════════════════════════════════════════════╗");
-Console.WriteLine("║          LabHMAC — Payment Terminal Simulator           ║");
+Console.WriteLine("║           LabHMAC — Payment Terminal Simulator           ║");
 Console.WriteLine("╚══════════════════════════════════════════════════════════╝");
 Console.WriteLine();
 
